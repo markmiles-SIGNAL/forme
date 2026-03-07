@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FORME — Healing Takes Shape</title>
+
+  <style>
+    :root {
+      --bg: #f5f3f1;
+      --ink: #111111;
+      --ink-soft: #666666;
+      --line: #e3d7cd;
+      --accent: #c8a56b;
+      --max-width: 1100px;
+      --radius: 22px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text",
+                   system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ====== NAVIGATION (4 CENTER BUTTONS) ====== */
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: linear-gradient(to bottom,
+                  rgba(0,0,0,0.55),
+                  rgba(0,0,0,0.15),
+                  transparent);
+      color: #ffffff;
+      pointer-events: none; /* nav re-enables pointer events */
+    }
+
+    .nav-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 18px 24px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    nav {
+      pointer-events: auto;
+      display: flex;
+      gap: 28px;
+      font-size: 12px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+    }
+
+    nav a {
+      color: #ffffff;
+      opacity: 0.85;
+      padding-bottom: 4px;
+      border-bottom: 1px solid transparent;
+      transition: opacity 0.2s ease, border-color 0.2s ease;
+    }
+
+    nav a:hover {
+      opacity: 1;
+      border-bottom-color: rgba(255,255,255,0.8);
+    }
+
+    /* ====== GLOBAL SECTION STYLES ====== */
+
+    section {
+      padding: 96px 24px 72px;
+    }
+
+    .inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    .label {
+      font-size: 11px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      margin-bottom: 12px;
+    }
+
+    .heading {
+      font-family: "Times New Roman", serif;
+      font-size: 28px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .sub {
+      max-width: 520px;
+      color: var(--ink-soft);
+      font-size: 15px;
+    }
+
+    /* ====== HERO ====== */
+
+    #home {
+      padding: 0;
+    }
+
+    .hero {
+      width: 100%;
+      height: 100vh;
+    }
+
+    .hero img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* ====== TWO COLUMN LAYOUT ====== */
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .panel {
+      background: #ffffff;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      padding: 26px;
+    }
+
+    .panel-title {
+      font-size: 13px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .panel-body {
+      font-size: 14px;
+      color: var(--ink-soft);
+    }
+
+    .image-frame {
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--line);
+    }
+
+    .stack {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 22px;
+    }
+
+    .centered {
+      text-align: center;
+    }
+
+    .stories-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 26px;
+      margin-top: 26px;
+    }
+
+    .quote {
+      font-size: 14px;
+      color: var(--ink);
+      margin-bottom: 10px;
+    }
+
+    .quote span {
+      display: block;
+      margin-top: 6px;
+      font-size: 13px;
+      color: var(--ink-soft);
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 26px 24px 34px;
+      text-align: center;
+      font-size: 11px;
+      color: var(--ink-soft);
+    }
+
+    @media (max-width: 900px) {
+      .two-col {
+        grid-template-columns: 1fr;
+      }
+
+      section {
+        padding: 88px 18px 64px;
+      }
+    }
+
+    @media (max-width: 720px) {
+      nav {
+        gap: 16px;
+        font-size: 10px;
+        letter-spacing: 0.2em;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- FIXED NAV WITH 4 BUTTONS -->
+  <header>
+    <div class="nav-inner">
+      <nav>
+        <a href="#technology">Technology</a>
+        <a href="#surgeons">For Surgeons</a>
+        <a href="#patients">For Patients</a>
+        <a href="#stories">Real Stories</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HOME HERO -->
+  <section id="home">
+    <div class="hero">
+      <!-- IMPORTANT: hero-image.png must be in the same folder as index.html -->
+      <img src="hero-image.png" alt="FORME Healing Takes Shape hero image">
+    </div>
+  </section>
+
+  <!-- TECHNOLOGY -->
+  <section id="technology">
+    <div class="inner two-col">
+      <div>
+        <div class="label">Technology</div>
+        <div class="heading">The FORME System</div>
+        <p class="sub">
+          Structured, technology-enabled recovery designed to extend surgical precision beyond the operating suite.
+        </p>
+
+        <div class="stack">
+          <div class="panel">
+            <div class="panel-title">Adaptive Recovery™</div>
+            <div class="panel-body">
+              A progression-based system designed to evolve with the body.
+              Engineered compression and anatomical support guide recovery transitions
+              from immediate post-op through long-term healing.
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-title">myScan</div>
+            <div class="panel-body">
+              Personalized anatomical mapping captured non-invasively in seconds.
+              myScan creates a 3D digital model of the patient’s anatomy before surgery,
+              aligning support strategy with surgical intent.
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-title">Care Collaboration Platform</div>
+            <div class="panel-body">
+              Digital coordination that connects consultation, imaging transfer,
+              garment ordering, and recovery planning into one seamless experience.
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-title">Integrated Ordering Service</div>
+            <div class="panel-body">
+              Personalized garment fulfillment embedded directly into your clinical flow.
+              Less friction. More confidence—for staff and patients.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="image-frame">
+        <!-- Doctor + patient tech image -->
+        <img src="patient-image.png" alt="Surgeon demonstrating myScan technology to patient">
+      </div>
+    </div>
+  </section>
+
+  <!-- FOR SURGEONS -->
+  <section id="surgeons">
+    <div class="inner two-col">
+      <div class="image-frame">
+        <!-- Surgeon in OR image -->
+        <img src="surgeon-image.png" alt="Surgeon entering operating suite in FORME environment">
+      </div>
+
+      <div>
+        <div class="label">For Surgeons</div>
+        <div class="heading">Beyond The Operating Suite</div>
+        <p class="sub">
+          For those who understand that excellence does not end in the operating suite.
+        </p>
+
+        <div class="panel" style="margin-top:22px;">
+          <div class="panel-title">Structured Recovery</div>
+          <div class="panel-body">
+            FORME protects surgical vision through structured recovery,
+            enhancing patient trust while elevating the standard of care.
+            Recovery becomes an intentional extension of your work—not an afterthought.
+          </div>
+        </div>
+
+        <div class="panel" style="margin-top:14px;">
+          <div class="panel-title">Center of Excellence</div>
+          <div class="panel-body">
+            Become a Certified FORME Center of Excellence and shape the future
+            of post-surgical recovery through:
+            <br><br>
+            • Adaptive Recovery™ Training<br>
+            • Care Pathway Collaboration Software<br>
+            • Digital Garment Ordering<br>
+            • Market Activation Program<br>
+            • Exclusive Access to Surgeon Finder
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOR PATIENTS -->
+  <section id="patients">
+    <div class="inner two-col">
+      <div>
+        <div class="label">For Patients</div>
+        <div class="heading">Your Path To Recovery</div>
+        <p class="sub">
+          Your path to recovery begins with FORME—supporting the body as it heals
+          with structure, personalization, and confidence at every stage.
+        </p>
+
+        <div class="panel" style="margin-top:22px;">
+          <div class="panel-title">How FORME Helps</div>
+          <div class="panel-body">
+            Recovery garments are no longer an afterthought. With FORME, your support
+            is shaped from your unique anatomy, aligned with your surgeon’s plan,
+            and designed to feel like a natural extension of your healing—not a compromise.
+          </div>
+        </div>
+      </div>
+
+      <div class="image-frame">
+        <!-- Center of Excellence / patient-facing scene -->
+        <img src="coe-image.png" alt="FORME Center of Excellence team with plaque">
+      </div>
+    </div>
+  </section>
+
+  <!-- REAL STORIES -->
+  <section id="stories">
+    <div class="inner centered">
+      <div class="label">Real Stories</div>
+      <div class="heading">Real Recoveries</div>
+      <p class="sub" style="margin: 0 auto;">
+        FORME was created to improve how women feel in the weeks and months after surgery.
+      </p>
+
+      <div class="stories-grid">
+        <div>
+          <div class="quote">
+            “I finally stopped thinking about my bra.”
+            <span>“I tried three different bras after surgery and none felt right. With FORME, it was the first time I forgot I was wearing something over my incisions. It just felt settled.” — A.M.</span>
+          </div>
+
+          <div class="quote">
+            “The process was seamless and felt like an extension of my surgeon’s work.”
+            <span>“My surgeon showed me my 3D scan on his phone and explained how the garment was built from my unique shape. Finally, a bra made just FOR.ME.” — M.J.</span>
+          </div>
+        </div>
+
+        <div>
+          <div class="quote">
+            “I wasn’t fighting the size chart anymore.”
+            <span>“I’ve never fit cleanly into band and cup sizes, and it got worse after implants. FORME was the first time I felt like the garment adjusted to me instead of me adjusting to it.” — K.S.</span>
+          </div>
+
+          <div class="quote">
+            “The new standard of care for plastic surgery.”
+            <span>“We put so much effort into surgical planning, then send patients into recovery with generic support. FORME lets me offer a structured, anatomically thoughtful alternative—and my patients feel the difference.” — Board-Certified Plastic Surgeon</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    FORME · Healing Takes Shape<br>
+    Cadence Cove, Inc. · San Francisco, CA · © <span id="year"></span> FORME. All rights reserved.
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
